@@ -1,4 +1,3 @@
-# personal-blog
-Just personal blog site
+Just personal blogs
 
-Want to see details? There are all in issues!
+Want to see details? Just [click here]().
