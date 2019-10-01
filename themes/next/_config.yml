@@ -139,9 +139,9 @@ exturl: false
 menu:
   home: / || home
   #about: /about/ || user
-  tags: /tags/ || tags
-  categories: /categories/ || th
-  archives: /archives/ || archive
+  tags: ./tags/ || tags
+  categories: ./categories/ || th
+  archives: ./archives/ || archive
   # schedule: /schedule/ || calendar
   # sitemap: /sitemap.xml || sitemap
   # commonweal: /404/ || heartbeat
@@ -277,7 +277,7 @@ excerpt_description: true
 # Automatically Excerpt. Not recommend.
 # Use <!-- more --> in the post to control excerpt accurately.
 auto_excerpt:
-  enable: false
+  enable: true
   length: 150
 
 # Read more button
@@ -510,7 +510,7 @@ pangu: false
 #swiftype_key:
 
 # Baidu Analytics ID
-#baidu_analytics:
+baidu_analytics: d74a499667241a64116720b82963068b
 
 # Growingio Analytics ID
 # Copyright 2015-2018 GrowingIO, Inc. More info available at https://www.growingio.com
@@ -614,14 +614,14 @@ needmoreshare2:
 
 # Google Webmaster tools verification setting
 # See: https://www.google.com/webmasters
-#google_site_verification:
+google_site_verification: 2aBZSy6-HywGrFwiUZadx0NDKVnr59EvTf_6nsWnSZY
 
 # Google Analytics
 #google_analytics:
 
 # Bing Webmaster tools verification setting
 # See: https://www.bing.com/webmaster
-#bing_site_verification:
+bing_site_verification: 2A1F3AD37EA2A28A5DE5E8B5287FE736
 
 # Yandex Webmaster tools verification setting
 # See: https://webmaster.yandex.ru
@@ -629,7 +629,7 @@ needmoreshare2:
 
 # Baidu Webmaster tools verification setting
 # See: https://ziyuan.baidu.com/site
-#baidu_site_verification:
+baidu_site_verification: ucpzVQxvvJ
 
 # CNZZ count
 #cnzz_siteid:
@@ -679,8 +679,8 @@ rating:
 # You can visit https://leancloud.cn get AppID and AppKey.
 leancloud_visitors:
   enable: false
-  app_id: #<app_id>
-  app_key: #<app_key>
+  app_id: i4SRTcD38Ivzjrqv88a6QaGW-gzGzoHsz
+  app_key: j9sJO2wnT1pfFyKncqvEJUlx
   # Dependencies: https://github.com/theme-next/hexo-leancloud-counter-security
   # If you don't care about security in leancloud counter and just want to use it directly
   # (without hexo-leancloud-counter-security plugin), set `security` to `false`.

@@ -13,8 +13,8 @@ timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: https://hunter-gu.github.io/personal-blog
-root: /public/
+url: https://hunter-gu.github.io/personal-blog/
+root: /personal-blog/
 permalink: :year/:month/:day/:title/
 permalink_defaults:
 
@@ -26,7 +26,7 @@ archive_dir: archives
 category_dir: categories
 code_dir: downloads/code
 i18n_dir: :lang
-skip_render:
+skip_render: README.md
 
 # Writing
 new_post_name: :title.md # File name of new posts
@@ -72,8 +72,32 @@ pagination_dir: page
 
 # Extensions
 ## Plugins: https://hexo.io/plugins/
+plugins: hexo-generator-sitemap
 ## Themes: https://hexo.io/themes/
 theme: next
+
+# hexo-neat
+neat_enable: true # 启用neat
+
+# 对html优化
+neat_html:
+  enable: true
+  exclude:
+
+# 对css优化
+neat_css:
+  enable: true
+  exclude:
+    - '*.min.css'
+
+# 对js优化
+neat_js:
+  enable: true
+  mangle: true
+  output:
+  compress:
+  exclude:
+    - '*.min.js'
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
