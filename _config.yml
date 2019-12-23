@@ -104,4 +104,4 @@ neat_js:
 deploy:
   type: git
   repo: git@github.com:hunter-gu/personal-blog.git
-  branch: master
+  branch: gh-pages
