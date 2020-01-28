@@ -44,4 +44,4 @@ categories: Uncategorized
 
 新的一年， 希望自己努力生活， 带着感恩的心， 感受生活的美好， 继续进步的同时珍惜身边最珍贵的东西， 不再迷失自己。
 
-**Life is more than Work.**
+**Life is above everything.**
