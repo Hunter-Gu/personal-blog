@@ -1,11 +1,11 @@
 ---
 title: Vue 源码学习 - `$watch 的原理`
-date: 2020-03-23 23:19:00
+date: 2020-03-21 10:27:55
 categories: Frontend
 tags: vue
 ---
 
-[变化监测](/personal-blog/2020/03/21/learn-vue-observer/#通过-Watcher-触发-getter)中提到了 `Watcher`，展示了它作为依赖的作用是：
+[变化监测](/personal-blog/2020/03/21/learn-vue-observe/#通过-Watcher-触发-getter)中提到了 `Watcher`，展示了它作为依赖的作用是：
 
 - 触发数据的 `getter`，并作为依赖被收集
 - 数据变化时，会被通知更新
@@ -14,9 +14,9 @@ tags: vue
 
 `$watch()` 方法被定义在 `Vue.prototype` 上，所以所有 `Vue` 的实例对象，都拥有该方法。
 
-又正如我们在[组件挂载](/personal-blog/2020/03/21/learn-vue-mount-component/#Vue-extend)中分析的那样，组件的构造函数是通过 `Vue.extend()` “继承”自 `Vue` 的，所以所有组件都拥有该方法。
+之后在[组件挂载](/personal-blog/2020/03/23/learn-vue-mount-component/#Vue-extend)中会分析，组件的构造函数是通过 `Vue.extend()` “继承”自 `Vue` 的，所以所有组件都拥有该方法。
 
-对于 `$watch()` 可能用的不多，但是 `watch` 一定是很熟悉的，实际上 `$watch()` 是 `watch` 的底层 API，两者非常相似。而 `watch` 会在[`computed` 和 `watch` 的原理](/personal-blog/2020/03/21/learn-vue-computed-and-watch/#watch)博客中分析。
+对于 `$watch()` 可能用的不多，但是 `watch` 一定是很熟悉的，实际上 `$watch()` 是 `watch` 的底层 API，两者非常相似。而 `watch` 会在[`computed` 和 `watch` 的原理](/personal-blog/2020/03/22/learn-vue-computed-and-watch/#watch)博客中分析。
 
 示例：
 
@@ -53,7 +53,7 @@ Vue.prototype.$watch = function(path, cb) {
 }
 ```
 
-[变化监测](/personal-blog/2020/03/21/learn-vue-observer/#通过-Watcher-触发-getter)这一博客中，我们得到的 `Watcher` 是这样的：
+[变化监测](/personal-blog/2020/03/21/learn-vue-observe/#通过-Watcher-触发-getter)这一博客中，我们得到的 `Watcher` 是这样的：
 
 ```js
 class Watcher {
@@ -379,8 +379,8 @@ class Watcher {
     }
 
     target = undefined
-    return value
 
+    return value
   }
 }
 
@@ -395,3 +395,113 @@ function traverse(val) {
   }
 }
 ```
+
+<!-- ## 完整代码
+
+响应式部分的完整代码更新为：
+
+```js
+Vue.prototype.$watch = function(path, cb, options) {
+  const vm = this
+  const watcher = new Watcher(vm, path, cb)
+
+  if (options.immediate) {
+    watcher.cb.call(vm, watcher.value)
+  }
+
+  return function unwatch() {
+    watcher.teardown()
+  }
+}
+
+class Watcher {
+
+  constructor(obj, key, cb, deep) {
+    this.obj = vm
+    this.deep = deep
+    this.cb = cb
+    this.deps = []
+    if (typeof keyOrFn === 'function') {
+      this.getter = keyOrFn.bind(vm)
+    } else {
+      this.getter = () => _.get(vm, keyOrFn)
+    }
+    this.value = this.get()
+  }
+
+  get() {
+    target = this
+    // 执行后触发 getter
+    const value = this.getter()
+
+    if (this.deep) {
+      traverse(value)
+    }
+
+    target = undefined
+
+    return value
+  }
+
+  teardown() {
+    const watcher = this
+    this.deps.forEach(dep => {
+      const index = dep.subs.indexOf(watcher)
+      dep.subs.splice(index, 1)
+    })
+  }
+
+  addDep(dep) {
+    if (this.deps.indexOf(dep) === -1) {
+      this.deps.push(dep)
+    }
+  }
+
+  update() {
+    const value = this.get()
+    const oldValue = this.value
+    if (value !== oldValue) {
+      this.value = value
+      this.cb.call(this.obj, value, oldValue)
+    }
+  }
+}
+
+function traverse(val) {
+  const keys = Object.keys(val)
+  let len = keys.length
+
+  if (typeof val !== 'object') return
+
+  while (len--) {
+    traverse(val[keys[i]])
+  }
+}
+
+class Dep {
+  constructor() {
+    this.subs = []
+  }
+
+  addSub(sub) {
+    this.subs.push(sub)
+  }
+
+  notify() {
+    const subs = this.subs
+    for (let i = 0; i < subs.length; i++) {
+      subs[i].update()
+    }
+  }
+
+  depend() {
+    if (target) {
+      if (this.subs.indexOf(target) === -1) {
+        this.addSub(target)
+      }
+
+      target.addDep(this)
+    }
+  }
+}
+``` -->

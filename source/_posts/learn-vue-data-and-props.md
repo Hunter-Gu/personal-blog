@@ -1,6 +1,6 @@
 ---
 title: Vue 源码学习 - `data` 和 `props` 的处理
-date: 2020-03-21 22:51:39
+date: 2020-03-21 13:30:55
 categories: Frontend
 tags: vue
 ---
@@ -581,6 +581,36 @@ if (simpleType.indexOf(expectedType) > -1) {
 - **对简单类型而言：通过 `typeof` 判断，原始包装类型需要用 `instanceof` 做二次验证**
 - **对自定义类型而言：通过 `instanceof` 判断**
 
+### 设置 `props`
+
+设置组件的 `props` 是个非常简单的过程，发生在组件挂载中的[创建组件节点](http://localhost:4000/personal-blog/2020/03/23/learn-vue-mount-component/#%E8%BF%94%E5%9B%9E%E7%BB%84%E4%BB%B6%E7%9A%84%E5%8D%A0%E4%BD%8D%E8%8A%82%E7%82%B9)阶段，可以总结为**从 `VNodeData` 来，到 `props` 去**。
+
+```js
+function extractPropsFromVNodeData(vnodeData, Ctor) {
+  const propsOptions = Ctor.options.props
+
+  if (!propsOptions) return
+
+  const { attrs, props } = vnodeData
+
+  const res = {}
+  if (attrs || props) {
+    for (const key in propsOptions) {
+      // 实际上 key 会被转换为 hyphen 风格
+      if (props.hasOwnProperty(key)) {
+        res[key] = props[key]
+      } else if (attrs[key]) {
+        res[key] = attrs[key]
+        delete attrs[key]
+      }
+    }
+  }
+}
+```
+
+这段代码同时回答了另一个问题，组件不会区分一个属性是 `attribute` 还是 `prop`，对于组件而言，**如果一个属性没有被声明为 `prop` 那么就认为是 `attribute`。**
+![非 Prop 属性](./screenshot_331.png)
+
 ### 对 `Boolean` 类型的属性进行特殊处理
 
 `Vue` 对 `Boolean` 类型的 `props` 是有特殊处理的，原因是：
@@ -618,4 +648,133 @@ if (value === '' || value === propKey) {
 }
 ```
 
-TODO 组件设置 prop 后，如何判断设置的 prop 满足要求
+<!-- ## 完整代码
+
+响应式部分的完整代码更新为:
+
+```js
+function observe(value) {
+  if (typeof value !== 'object' || value === null) {
+    return
+  }
+
+  let ob
+  if (value.hasOwnProperty('__ob__']) && value.__ob__ instanceof Observer) {
+    ob = value.__ob__
+  } else {
+    ob = new Observer(value)
+  }
+
+  return ob
+}
+
+class Observer {
+  constructor(value) {
+    this.value = value
+    this.walk(value)
+
+    // 在数组被修改后
+    // 需要通过该属性找到当前 Observer 实例
+    // 通过该实例将新添加的值变为响应式
+    value.__ob__ = this
+
+    if (Array.isArray(value)) {
+      value.__proto__ = arrayMethods
+      this.observeArray(value)
+    } else {
+      this.walk(value)
+    }
+  }
+
+  observeArray(items) {
+    for (let i = 0, l = items.length; i < l; i++) {
+      observe(items[i])
+    }
+  }
+
+  walk(value) {
+    const keys = Object.keys(value)
+
+    for (let i = 0; i < keys.length; i++) {
+      defineReactive(obj, keys[i])
+    }
+  }
+}
+
+function defineReactive(obj, key, val = obj[key]) {
+  const dep = new Dep()
+  const dependArray = value => {
+    val.forEach(v => {
+      v && v.__ob__ && v.__ob__.dep.depend()
+      if (Array.isArray(v)) {
+        dependArray(v)
+      }
+    })
+  }
+  const ob = observe(val)
+
+  observe(val)
+
+  Object.defineProperty(obj, key, {
+    enumerable: true,
+    configurable: true,
+    get() {
+      dep.depend()
+      ob.dep.depend()
+      if (Array.isArray(val)) {
+        dependArray(val)
+      }
+
+      return val
+    },
+    set(newVal) {
+      val = newVal
+      observe(val)
+      dep.notify()
+    }
+  })
+}
+
+function observe(value) {
+  if (typeof value !== 'object' || value === null) {
+    return
+  }
+
+  const ob = new Observer(value)
+
+  return ob
+}
+
+const arrayProto = Array.prototype
+const arrayMethods = Object.create(arrayProto)
+;[
+  'push',
+  'pop',
+  'shift',
+  'unshift',
+  'splice',
+  'sort',
+  'reverse'
+].forEach(method => {
+  const original = arrayProto[method]
+
+  arrayMethods[method] = function mutator(...args) {
+    // apply 在调用该新方法的数组上
+    const result = original.apply(this, args)
+    // 获取 value 的 Observer 实例
+    const ob = this.__ob__
+
+    switch (method) {
+      case 'push':
+      case 'unshift':
+      case 'splice':
+        // 因为新添加的值不是响应式数据
+        // 此处可以只对新添加的值进行响应式处理
+        ob.observeArray(result)
+        break;
+    }
+
+    return result
+  }
+})
+``` -->

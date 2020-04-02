@@ -1,6 +1,6 @@
 ---
 title: Vue 源码学习 - `computed` 和 `watch` 的原理
-date: 2020-03-21 22:52:13
+date: 2020-03-22 10:40:55
 categories: Frontend
 tags: vue
 ---
@@ -80,7 +80,7 @@ function initComputed(vm, computed) {
 
 ### 触发依赖收集
 
-既然会触发依赖收集，那一定会涉及 `Watcher`，因为在[变化监测](/personal-blog/2020/03/21/learn-vue-observer/#依赖)这篇文章中说过，`Watcher` 就是依赖。
+既然会触发依赖收集，那一定会涉及 `Watcher`，因为在[变化监测](/personal-blog/2020/03/21/learn-vue-observe/#依赖)这篇文章中说过，`Watcher` 就是依赖。
 
 那么接下来的问题是如何将响应式数据、`computed` 以及 `Watcher` 三者进行关联？
 
@@ -101,7 +101,7 @@ function initComputed(vm, computed) {
 }
 ```
 
-`getAge()` 的调用会触发 `age` 的 `getter` 从而进行依赖收集；所以只需要将 `getAge()` 作为 `Watcher` 的[触发函数](/personal-blog/2020/03/23/learn-vue-watch/#触发函数)就可以达到这个目的了：
+`getAge()` 的调用会触发 `age` 的 `getter` 从而进行依赖收集；所以只需要将 `getAge()` 作为 `Watcher` 的[触发函数](/personal-blog/2020/03/21/learn-vue-watch/#触发函数)就可以达到这个目的了：
 
 ```js
 function initComputed(vm, computed) {
@@ -305,4 +305,74 @@ function initComputed(vm, computed) {
 
 ## `watch`
 
-`watch` 的原理就约等于 `Vue.prototype.$watch()` 的原理，感兴趣可以直接看[这篇文章](/personal-blog/2020/03/23/learn-vue-watch)，这里将 `watch` 和 `computed` 放在一起是因为大家总是习惯将这两者比较，官方文档中也有涉及这[两者的比较](https://cn.vuejs.org/v2/guide/computed.html#%E8%AE%A1%E7%AE%97%E5%B1%9E%E6%80%A7-vs-%E4%BE%A6%E5%90%AC%E5%B1%9E%E6%80%A7)。
+`watch` 的原理就约等于 `Vue.prototype.$watch()` 的原理，感兴趣可以直接看[这篇文章](/personal-blog/2020/03/21/learn-vue-watch/)，这里将 `watch` 和 `computed` 放在一起是因为大家总是习惯将这两者比较，官方文档中也有涉及这[两者的比较](https://cn.vuejs.org/v2/guide/computed.html#%E8%AE%A1%E7%AE%97%E5%B1%9E%E6%80%A7-vs-%E4%BE%A6%E5%90%AC%E5%B1%9E%E6%80%A7)。
+
+<!-- ## 完整代码
+
+`Watcher` 的完整代码更新为：
+
+```js
+class Watcher {
+  constructor(vm, key, cb, options) {
+    this.obj = vm
+    this.cb = cb
+    this.deps = []
+    // 新增代码
+    this.lazy = (options && options.lazy) || false
+    this.deep = (options && options.deep) || false
+
+    if (typeof keyOrFn === 'function') {
+      this.getter = keyOrFn.bind(vm)
+    } else {
+      this.getter = () => _.get(vm, keyOrFn)
+    }
+
+    this.value = this.lazy ? undefined : this.get()
+  }
+
+  get() {
+    target = this
+
+    const value = this.getter()
+
+    if (this.deep) {
+      traverse(value)
+    }
+
+    target = undefined
+    return value
+  }
+
+  evaluate() {
+    this.value = this.get()
+    this.dirty = false
+  }
+
+  addDep(dep) {
+    if (this.deps.indexOf(dep) === -1) {
+      this.deps.push(dep)
+    }
+  }
+
+  update() {
+    if (this.lazy) {
+      this.dirty = true
+    } else {
+      const value = this.get()
+      const oldValue = this.value
+      if (value !== oldValue) {
+        this.value = value
+        this.cb.call(this.obj, value, oldValue)
+      }
+    }
+  }
+
+  teardown() {
+    const watcher = this
+    this.deps.forEach(dep => {
+      const index = dep.subs.indexOf(watcher)
+      dep.subs.splice(index, 1)
+    })
+  }
+}
+``` -->

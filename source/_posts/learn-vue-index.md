@@ -79,24 +79,24 @@ Vue.prototype.$mount = function(el, hydrating) {
 
 我将 Vue 的核心分为如下模块，在看代码时采取分块阅读的方式：
 
-- [变化监测](/personal-blog/2020/03/21/learn-vue-observer/#more)
+- [变化监测](/personal-blog/2020/03/21/learn-vue-observe/#more)
 - [模板编译](personal-blog/2020/03/21/learn-vue-compiler/#more)
 - 虚拟 DOM
 
 ## 文章列表
 
-- [eventLoop]()
-- [变化监测]
-- [`$watch` 的原理]
-- [`data` 和 `props` 的处理]
-- [`$set` 和 `$delete` 的原理]
-- [`computed` 和 `watch` 的处理]
-- [模板编译]
-- [虚拟 DOM]
-- [组件挂载]
-- [`CSS Scoped` 的原理]
-- [异步更新队列]
-- [事件机制]
-- [`filter` 的原理]
-- [指令的奥秘]
+- [变化监测](/personal-blog/2020/03/21/learn-vue-observe/)
+- [`$watch` 的原理](/personal-blog/2020/03/21/learn-vue-watch/)
+- [`data` 和 `props` 的处理](/personal-blog/2020/03/21/learn-vue-data-and-props/)
+- [`$set` 和 `$delete` 的原理](/personal-blog/2020/03/21/learn-vue-set-and-delete/)
+- [`computed` 和 `watch` 的处理](/personal-blog/2020/03/22/learn-vue-computed-and-watch/)
+- [模板编译](/personal-blog/2020/03/22/learn-vue-template-compiler/)
+- [虚拟 DOM](/personal-blog/2020/03/22/learn-vue-virtual-dom/)
+- [组件挂载](/personal-blog/2020/03/23/learn-vue-mount-component/)
+- [`CSS Scoped` 的原理](/personal-blog/2020/03/23/learn-vue-css-scope/)
+- [异步更新队列](/personal-blog/2020/03/24/learn-vue-async-queue/)
+- [事件机制](/personal-blog/2020/03/24/learn-vue-event/)
+- [`filter` 的原理](/personal-blog/2020/03/25/learn-vue-filter/)
+- [指令的奥秘](/personal-blog/2020/03/26/learn-vue-directive/)
 - [内置组件 keep-alive, transition]
+- [slot 的原理]

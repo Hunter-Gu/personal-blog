@@ -5,11 +5,15 @@ tags: untagged
 categories: Uncategorized
 ---
 
+> passionate, obsessive, relentless, resilient, fearless.
+
 ![championship](./1.jpeg)
 
-> Mamba Out!
+![mamba out](./2.jpeg)
 
-时间回到 2016.04.14， 我记得当时我是在找实习的路上， 看了科比的最后一场球。 60 分， 带队逆转， 科比的风格， 完美诠释曼巴精神 —— passionate, obsessive, relentless, resilient, fearless.
+![mamba forever](./3.jpeg)
+
+<!-- 时间回到 2016.04.14， 我记得当时我是在找实习的路上， 看了科比的最后一场球。 60 分， 带队逆转， 科比的风格， 完美诠释曼巴精神 —— passionate, obsessive, relentless, resilient, fearless.
 
 回到今天， 刚起床看到消息的时候， 我想了想今天是不是愚人节， 花了几秒意识到不是， 我开始在某看球软件上疯狂的刷新闻， 铺天盖地， 我们都无法接受。 没有任何一个人能像他一样， 在自身领域有超凡影响力的同时， 更以自己的精神影响世上所有人。
 
@@ -31,8 +35,8 @@ categories: Uncategorized
 
 > We can't have life without the death, we can't have light without the dark.
 
-Love you, Kobe.
+Love you, Kobe. -->
 
-Mamba forever.
+Mamba Never Out.
 
 R.I.P
