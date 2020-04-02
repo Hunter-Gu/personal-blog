@@ -1,15 +1,15 @@
 ---
 title: Vue 源码学习 - 异步更新队列
-date: 2020-03-21 22:53:17
+date: 2020-03-24 07:10:03
 categories: Frontend
 tags: vue
 ---
 
 [`Vue` 的官方文档](https://cn.vuejs.org/v2/guide/reactivity.html#%E5%BC%82%E6%AD%A5%E6%9B%B4%E6%96%B0%E9%98%9F%E5%88%97)中有对异步更新队列进行介绍，而 `Vue.prototype.$nextTick()/Vue.nextTick()` 就是对外包暴露的接口。
 
-简单来说，异步更新队列就是“将一段时间内的修改，统一延迟到某个时间点执行”。
+简单来说，异步更新队列就是**将一段时间内的修改，延迟到某个时间点统一执行**。这么做的好处是可以避免不必要的渲染。
 
-这么做的好处是可以避免不必要的渲染。我们每次修改数据，会导致组件的重新渲染，对于一个组件而言，一段时间内不大可能只修改一个数据，这就会引起多次重新渲染，这显然是不必要的。而将修改缓存，在一段时间后只执行一次重新渲染听起来就是个不错的注意。
+我们每次修改数据，会导致组件的重新渲染，对于一个组件而言，一段时间内不大可能只修改一个数据，这就会引起多次重新渲染，这显然是不必要的。而将修改缓存，在一段时间后只执行一次重新渲染听起来就是个不错的主意。
 
 ## 异步任务队列 - `Vue.prototype.$nextTick()`
 
@@ -59,29 +59,53 @@ function runTimerFunc() {
 }
 ```
 
+此处涉及的 JavaScript 事件循环以及任务、微任务可以看[这篇文章](/personal-blog/2020/03/20/event-loop/)。
+
 ## 更新视图
 
-在[变化监测](/personal-blog/2020/03/21/learn-vue-observer)这篇博客中，我们反复提到**响应式数据变化后，会通知依赖（视图）更新**，但是却从未提到如何更新视图。 TODO
+在[变化监测](/personal-blog/2020/03/21/learn-vue-observe/#Watcher)这篇博客中，我们反复提到**响应式数据变化后，会通知依赖（视图）更新**。
 
-在[组件挂载]()中，我们知道组件是通过如下方式实现挂载、渲染的：
+在[组件挂载](/personal-blog/2020/03/23/learn-vue-mount-component/#更新组件-prepatch)中，也提及了组件的更新。
+
+但是却从没有提到依赖是如何触发更新的？
+
+非常简单：
 
 ```js
-new Watcher(vm, updateComponent)
+new Watcher(vm, () => {
+  vm.update(vm.render())
+})
 ```
 
-所以更新视图只需要在数据修改后触发回调执行就可以了：
+别看只有一行代码，它是[触发函数](/personal-blog/2020/03/21/learn-vue-watch/#触发函数)的典型使用！想想看，执行 `render()` 函数一定会导致 `data` 中的响应式数据的 `getter`，就会触发依赖收集，而且这些数据收集的依赖都是这一个 `Watcher` 实例！
+
+更有意思的是，无论哪个响应式数据的 `setter` 触发了，就会执行 `update()` 以更新视图，而更新视图对于该 `Watcher` 实例就只需要执行当前 `Watcher` 实例的 `getter()` 方法。
+
+这个过程的精髓也就是官网的这张图：
+
+![MVVM](./data.png)
+
+实际上，组件的挂载和更新都是通过这样的方式。在执行 `new Watcher` 时，回调函数会执行，这时候是组件的挂载；之后触发回调的执行就会更新组件。
 
 ```js
 class Watcher {
+
+  // 省略多余代码...
+
   update() {
-    queueWatcher(this)
+    const value = this.get()
+    const oldValue = this.value
+    if (value !== oldValue) {
+      this.value = value
+      this.cb.call(this.obj, value, oldValue)
+    }
   }
 }
-
-function queueWatcher(watcher) {
-  nextTick(watcher.run)
-}
 ```
+
+> 上面是[目前为止](/personal-blog/2020/03/21/learn-vue-watch/)我们得到的 `Watcher`，由于 `update()` 方法是这篇博客会涉及的，所以将它列出，其他部分就省略了。
+
+`update` 中执行了 `get()`，从而执行了 `render()` 导致视图更新。
 
 ### 调度器
 
@@ -98,9 +122,16 @@ id = 0
 class Watcher {
   constructor() {
     this.id = ++id
+    // 省略多余代码
   }
-}
 
+  // 省略多余代码
+}
+```
+
+接着就是对 `Watcher` 缓存，并对执行顺序进行编排：
+
+```js
 const queue = []
 
 function flushSchedulerQueue() {
@@ -108,17 +139,49 @@ function flushSchedulerQueue() {
 
   for (let i = 0; i < queue.length; i++) {
     const watcher = queue[i]
-
-    watcher.run()
+    callHook(watcher.vm, 'beforeUpdate')
+    watcher.update()
+    callHook(watcher.vm, 'updated')
   }
+
 
   queue.length = 0
 }
 
 function queueWatcher(watcher) {
 
+  if (queue.indexOf(watcher) > -1) {
+    return
+  }
+
   queue.push(watcher)
 
   nextTick(flushSchedulerQueue)
+}
+```
+
+在 `Watcher` 中调用该方法：
+
+```js
+class Watcher {
+
+  // 省略多余代码...
+
+  update() {
+    // 更新代码
+
+    // 表示是触发 computed 的依赖更新
+    if (this.lazy) {
+      const value = this.get()
+      const oldValue = this.value
+      if (value !== oldValue) {
+        this.value = value
+        this.cb.call(this.obj, value, oldValue)
+      }
+    } else {
+      // 表示是修改响应式数据了
+      queueWatcher(this)
+    }
+  }
 }
 ```

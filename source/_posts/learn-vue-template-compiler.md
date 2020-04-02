@@ -1,6 +1,6 @@
 ---
 title: Vue 源码学习 - 模板编译
-date: 2020-03-21 14:49:55
+date: 2020-03-22 15:40:55
 categories: Frontend
 tags: vue
 ---
@@ -11,13 +11,37 @@ tags: vue
 - 遍历 AST 进行优化（optimize）
 - 最终通过生成器生成 render 函数（generate）
 
-![模板编译](./screenshot_333.png)
+```mermaid
+stateDiagram
+  parseHTML --> optimize: ast
+  optimize --> generate
+  generate --> render
+```
 
 该文章不会涉及 HTMLParser 的内容，感兴趣可以阅读[这篇文章](https://johnresig.com/blog/pure-javascript-html-parser/)。
 
 ## `HTMLParser` 生成 AST
 
-![模板编译](./screenshot_334.png)
+```mermaid
+stateDiagram
+  HTMLParser --> 非文本
+  HTMLParser --> 文本: 寻找小于号（表示标签）
+
+  非文本 --> 注释
+  注释 --> HTMLParser: break
+
+  注释 --> DOCTYPE
+  DOCTYPE --> HTMLParser: break
+
+  DOCTYPE --> EndTag
+  EndTag --> HTMLParser: break
+
+  EndTag --> StartTag
+
+  StartTag --> HTMLParser
+
+  文本 --> HTMLParser
+```
 
 ### `start` 钩子
 

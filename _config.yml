@@ -5,7 +5,7 @@
 # Site
 title: Nail's Blog
 subtitle:
-description: PROCESSING
+description: STAY HUNGRY STAY FOOLISH
 keywords: javascript
 author: Nail Hunter
 language:
@@ -107,3 +107,10 @@ deploy:
   name: Hunter-Gu
   email: 1737087925@qq.com
   branch: gh-pages
+
+# mermaid chart
+mermaid: ## mermaid url https://github.com/knsv/mermaid
+  enable: true  # default true
+  version: "8.4.8" # default v7.1.2
+  options:
+    theme: dark # find more api options from https://github.com/knsv/mermaid/blob/master/src/mermaidAPI.js

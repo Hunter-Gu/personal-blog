@@ -218,4 +218,71 @@ function defineReactive(obj, key, val = obj[key]) {
 }
 ```
 
-变化监测部分的原理到这里就差不多分析完了，但是通过 `defineReactive()` 转换响应式数据的部分只涉及了最基础的部分，在 [`data` 和 `props` 的处理](/personal-blog/2020/03/21/learn-vue-data-and-props/#more)博客中会进一步分析；`Watcher` 的作用也远没有分析完，在 `computed`, `watch`和 `$watch()` 中都需要提到它，详见 [`$watch 的原理`](/personal-blog/2020/03/23/learn-vue-watch/#more)以及[`computed` 和 `watch` 的原理](/personal-blog/2020/03/21/learn-vue-computed-and-watch/#more)。
+变化监测部分的原理到这里就差不多分析完了，但是通过 `defineReactive()` 转换响应式数据的部分只涉及了最基础的部分，在 [`data` 和 `props` 的处理](/personal-blog/2020/03/21/learn-vue-data-and-props/#more)博客中会进一步分析；`Watcher` 的作用也远没有分析完，在 `computed`, `watch`和 `$watch()` 中都需要提到它，详见 [`$watch 的原理`](/personal-blog/2020/03/21/learn-vue-watch/)以及[`computed` 和 `watch` 的原理](/personal-blog/2020/03/22/learn-vue-computed-and-watch/#more)。
+
+## 完整代码
+
+```js
+let target
+
+function defineReactive(obj, key, val = obj[key]) {
+  const dep = new Dep()
+
+  Object.defineProperty(obj, key, {
+    enumerable: true,
+    configurable: true,
+    get() {
+      dep.depend()
+      return val
+    },
+    set(newVal) {
+      val = newVal
+
+      dep.notify()
+    }
+  })
+}
+
+class Watcher {
+  constructor(obj, key) {
+    this.getter = () => obj.key
+  }
+
+  get() {
+    target = this
+    // 执行后触发 getter
+    const value = this.getter()
+    target = undefined
+    return value
+  }
+
+  update() {
+    // 更新代码
+  }
+}
+
+class Dep {
+  constructor() {
+    this.subs = []
+  }
+
+  addSub(sub) {
+    this.subs.push(sub)
+  }
+
+  notify() {
+    const subs = this.subs
+    for (let i = 0; i < subs.length; i++) {
+      subs[i].update()
+    }
+  }
+
+  depend() {
+    if (target) {
+      if (this.subs.indexOf(target) === -1) {
+        this.addSub(target)
+      }
+    }
+  }
+}
+```

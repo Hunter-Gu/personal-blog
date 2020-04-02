@@ -1,6 +1,6 @@
 ---
 title: Vue 源码学习 - `$set` 和 `$delete` 的原理
-date: 2020-03-21 22:52:31
+date: 2020-03-21 17:33:55
 tags:
 ---
 
@@ -30,7 +30,7 @@ const vm = new Vue({
 vm.$set(vm.name, 'lastname', 'hunter')
 ```
 
-先定义该函数，既然是添加响应式属性，那就一定会用到之前的 [`defineReactive()` 函数](/personal-blog/2020/03/21/learn-vue-data-and-props/#more)：
+先定义该函数，既然是添加响应式属性，那就一定会用到之前的 [`defineReactive()` 函数](/personal-blog/2020/03/21/learn-vue-data-and-props/#%E2%80%9C%E6%B7%B1%E2%80%9D%E7%9B%91%E5%90%AC)：
 
 ```js
 Vue.prototype.$set = function(target, key, value) {
