@@ -5,21 +5,26 @@ categories: Frontend
 tags: vue
 ---
 
-最近学习了一下 Vue 的源码，花了不少时间，写几篇博客记录一下。
+最近学习了一下 Vue 的源码，花了不少时间，记录在了 [github pages](https://hunter-gu.github.io/learn-vue/)。
+
+由于是第一次看框架类的源码，下面是对看源码过程的总结。
 
 ## 前提
 
 看源码是有前提的，你需要对框架足够熟悉了再去看，大致可以分为如下几个问题。
 
 **`Vue` 解决了什么问题?**
+
 - 组件化
 - 声明式渲染
 - MVVM
 
 **`Vue` 的设计思想是什么？**
+
 - 响应式数据
 
 **`Vue` 有哪些主要的功能点？**
+
 - 变化监测
 - 模板编译
 - 虚拟 DOM
@@ -79,24 +84,6 @@ Vue.prototype.$mount = function(el, hydrating) {
 
 我将 Vue 的核心分为如下模块，在看代码时采取分块阅读的方式：
 
-- [变化监测](/personal-blog/2020/03/21/learn-vue-observe/#more)
-- [模板编译](personal-blog/2020/03/21/learn-vue-compiler/#more)
+- 变化监测
+- 模板编译
 - 虚拟 DOM
-
-## 文章列表
-
-- [变化监测](/personal-blog/2020/03/21/learn-vue-observe/)
-- [`$watch` 的原理](/personal-blog/2020/03/21/learn-vue-watch/)
-- [`data` 和 `props` 的处理](/personal-blog/2020/03/21/learn-vue-data-and-props/)
-- [`$set` 和 `$delete` 的原理](/personal-blog/2020/03/21/learn-vue-set-and-delete/)
-- [`computed` 和 `watch` 的处理](/personal-blog/2020/03/22/learn-vue-computed-and-watch/)
-- [模板编译](/personal-blog/2020/03/22/learn-vue-template-compiler/)
-- [虚拟 DOM](/personal-blog/2020/03/22/learn-vue-virtual-dom/)
-- [组件挂载](/personal-blog/2020/03/23/learn-vue-mount-component/)
-- [`CSS Scoped` 的原理](/personal-blog/2020/03/23/learn-vue-css-scope/)
-- [异步更新队列](/personal-blog/2020/03/24/learn-vue-async-queue/)
-- [事件机制](/personal-blog/2020/03/24/learn-vue-event/)
-- [`filter` 的原理](/personal-blog/2020/03/25/learn-vue-filter/)
-- [指令的奥秘](/personal-blog/2020/03/26/learn-vue-directive/)
-- [内置组件 keep-alive, transition]
-- [slot 的原理]
