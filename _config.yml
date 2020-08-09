@@ -74,7 +74,9 @@ pagination_dir: page
 ## Plugins: https://hexo.io/plugins/
 plugins: hexo-generator-sitemap
 ## Themes: https://hexo.io/themes/
-theme: next
+theme: cactus
+theme_config:
+  colorscheme: white
 
 # hexo-neat
 neat_enable: true # 启用neat
