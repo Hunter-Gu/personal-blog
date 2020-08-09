@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://hunter-gu.github.io/personal-blog/about/index.html</loc>
+    
+    <lastmod>2020-08-08T17:46:40.361Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://hunter-gu.github.io/personal-blog/2020/05/30/to-be-more-effective/</loc>
     
     <lastmod>2020-05-30T15:40:20.279Z</lastmod>
@@ -12,13 +19,6 @@
     <loc>https://hunter-gu.github.io/personal-blog/2020/03/21/learn-vue-index/</loc>
     
     <lastmod>2020-04-06T15:23:34.637Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://hunter-gu.github.io/personal-blog/about/index.html</loc>
-    
-    <lastmod>2020-04-06T15:18:11.038Z</lastmod>
     
   </url>
   
@@ -37,14 +37,14 @@
   </url>
   
   <url>
-    <loc>https://hunter-gu.github.io/personal-blog/tags/index.html</loc>
+    <loc>https://hunter-gu.github.io/personal-blog/categories/index.html</loc>
     
     <lastmod>2020-03-28T03:55:25.011Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://hunter-gu.github.io/personal-blog/categories/index.html</loc>
+    <loc>https://hunter-gu.github.io/personal-blog/tags/index.html</loc>
     
     <lastmod>2020-03-28T03:55:25.011Z</lastmod>
     
@@ -121,14 +121,14 @@
   </url>
   
   <url>
-    <loc>https://hunter-gu.github.io/personal-blog/2019/06/01/cc-builder/</loc>
+    <loc>https://hunter-gu.github.io/personal-blog/2019/11/07/blob-api/</loc>
     
     <lastmod>2020-03-28T03:55:24.821Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://hunter-gu.github.io/personal-blog/2019/11/07/blob-api/</loc>
+    <loc>https://hunter-gu.github.io/personal-blog/2019/06/01/cc-builder/</loc>
     
     <lastmod>2020-03-28T03:55:24.821Z</lastmod>
     
