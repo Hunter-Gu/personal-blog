@@ -2,6 +2,10 @@
 title: Inspiration
 ---
 
+## 2021.08.13
+
+996 - do things right *vs* do right things
+
 ## 2021.08.07
 
 番茄工作法真的可以帮助我们保持专注。
