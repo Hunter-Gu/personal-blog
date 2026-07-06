@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://hunter-gu.github.io/personal-blog/about/index.html</loc>
+    
+    <lastmod>2026-07-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://hunter-gu.github.io/personal-blog/2020/01/08/review-2019-and-preview-2020/</loc>
     
     <lastmod>2026-07-06</lastmod>
@@ -38,25 +47,7 @@
   </url>
   
   <url>
-    <loc>https://hunter-gu.github.io/personal-blog/about/index.html</loc>
-    
-    <lastmod>2026-07-06</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://hunter-gu.github.io/personal-blog/2021/09/23/redo-and-undo/</loc>
-    
-    <lastmod>2026-07-06</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://hunter-gu.github.io/personal-blog/2019/03/13/webpack-tapable/</loc>
     
     <lastmod>2026-07-06</lastmod>
     
@@ -74,7 +65,7 @@
   </url>
   
   <url>
-    <loc>https://hunter-gu.github.io/personal-blog/inspiration/index.html</loc>
+    <loc>https://hunter-gu.github.io/personal-blog/2019/03/13/webpack-tapable/</loc>
     
     <lastmod>2026-07-06</lastmod>
     
@@ -83,7 +74,7 @@
   </url>
   
   <url>
-    <loc>https://hunter-gu.github.io/personal-blog/2021/06/06/task-driven/</loc>
+    <loc>https://hunter-gu.github.io/personal-blog/inspiration/index.html</loc>
     
     <lastmod>2026-07-06</lastmod>
     
@@ -101,7 +92,25 @@
   </url>
   
   <url>
+    <loc>https://hunter-gu.github.io/personal-blog/2021/06/06/task-driven/</loc>
+    
+    <lastmod>2026-07-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://hunter-gu.github.io/personal-blog/2020/05/30/to-be-more-effective/</loc>
+    
+    <lastmod>2026-07-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://hunter-gu.github.io/personal-blog/2019/02/20/know-webpack/</loc>
     
     <lastmod>2026-07-06</lastmod>
     
@@ -120,15 +129,6 @@
   
   <url>
     <loc>https://hunter-gu.github.io/personal-blog/2020/03/21/learn-vue-index/</loc>
-    
-    <lastmod>2026-07-06</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://hunter-gu.github.io/personal-blog/2019/02/20/know-webpack/</loc>
     
     <lastmod>2026-07-06</lastmod>
     
@@ -218,7 +218,7 @@
   </url>
   
   <url>
-    <loc>https://hunter-gu.github.io/personal-blog/2019/11/07/blob-api/</loc>
+    <loc>https://hunter-gu.github.io/personal-blog/2021/01/21/best-practice-of-readable-writable/</loc>
     
     <lastmod>2026-07-06</lastmod>
     
@@ -227,7 +227,7 @@
   </url>
   
   <url>
-    <loc>https://hunter-gu.github.io/personal-blog/2021/01/21/best-practice-of-readable-writable/</loc>
+    <loc>https://hunter-gu.github.io/personal-blog/2019/11/07/blob-api/</loc>
     
     <lastmod>2026-07-06</lastmod>
     
