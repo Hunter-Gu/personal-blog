@@ -3,6 +3,8 @@ title: About
 date: 2020-03-28 12:53:43
 ---
 
+Fullstack engineer based in Canada. I build web applications, developer-facing tools, and AI-assisted workflows.
+
 ## Experience
 
 - 2025.01-now: Fortinet Canada | Senior Software Developer
