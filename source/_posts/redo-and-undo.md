@@ -51,7 +51,7 @@ categories: Frontend
   	{
   		name: 'input',
   		props: {
-+  			value: 'Nail',
++  			value: 'Neil',
   			placeholder: 'Please input your name'
   		}
   	}
@@ -87,7 +87,7 @@ redo 和 undo 操作其实就是在这几种值之间来回穿梭，那么只需
 }
 ```
 
-执行一个类似 `update` 的操作，其实就是把 `children.0.props.value` 更新为 `'Nail'`：
+执行一个类似 `update` 的操作，其实就是把 `children.0.props.value` 更新为 `'Neil'`：
 
 ```diff
 {
@@ -95,7 +95,7 @@ redo 和 undo 操作其实就是在这几种值之间来回穿梭，那么只需
   	{
   		name: 'input',
   		props: {
-+  			value: 'Nail',
++  			value: 'Neil',
   			placeholder: 'Please input your name'
   		}
   	}
@@ -136,7 +136,7 @@ redo 和 undo 操作其实就是在这几种值之间来回穿梭，那么只需
 		{
 			name: 'input',
 			props: {
-				value: 'Nail',
+				value: 'Neil',
 				placeholder: 'Please input your name',
 			},
 		}
@@ -152,7 +152,7 @@ redo 和 undo 操作其实就是在这几种值之间来回穿梭，那么只需
 		{
 			name: 'input',
 			props: {
-				value: 'Nail',
+				value: 'Neil',
 				placeholder: 'Please input your name',
 			},
 		},
