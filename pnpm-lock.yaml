@@ -23,18 +23,12 @@ importers:
       hexo-generator-archive:
         specifier: ^2.0.0
         version: 2.0.0
-      hexo-generator-category:
-        specifier: ^2.0.0
-        version: 2.0.0
       hexo-generator-index:
         specifier: ^4.0.0
         version: 4.0.0
       hexo-generator-sitemap:
         specifier: ^3.0.1
         version: 3.0.1(chokidar@3.6.0)
-      hexo-generator-tag:
-        specifier: ^2.0.0
-        version: 2.0.0
       hexo-renderer-ejs:
         specifier: ^2.0.0
         version: 2.0.0
@@ -585,10 +579,6 @@ packages:
     resolution: {integrity: sha512-KikJk7dGFbtNHOgqtLFGf5T/S8n1paGp+Gy0KfVDz+HKYhGbXOouyiZkmc3O9KrYt6ja14rmkMhq7KKGtvfehw==}
     engines: {node: '>=14'}
 
-  hexo-generator-category@2.0.0:
-    resolution: {integrity: sha512-9OduRBf3WeRDa4BR0kAfRjOVHur7v3fm0NKAwbjUiqULigAdNZVZPO3cHKW2MlBbl/lI5PuWdhQ9zZ99CCCAgQ==}
-    engines: {node: '>=14'}
-
   hexo-generator-index@4.0.0:
     resolution: {integrity: sha512-KeM7mOCKWINGFAk1E+CkjMMgqFIv8oaRbGxR7ipkQAp44o4aopkVftma4sdIplOq9WQEWfVYDUK5gEv9J3nzUg==}
     engines: {node: '>=18'}
@@ -596,10 +586,6 @@ packages:
   hexo-generator-sitemap@3.0.1:
     resolution: {integrity: sha512-n+0KLNmq6TLbiZPTQF6NY5MbEem/O+DFx0lgQZNQcU4tdjXIZRrQJs+KRKeT66NTkdlYTqb4WwCxswLqQz0crA==}
     engines: {node: '>=12.13.0'}
-
-  hexo-generator-tag@2.0.0:
-    resolution: {integrity: sha512-1px/hF3veEohWDN8jjzchQhaiz+uOStUvvMaBJC9vWOlALh30UFcapL8IrvAwwJZjFRVA+WqGgDRqoQ8+yaaFw==}
-    engines: {node: '>=14'}
 
   hexo-i18n@2.0.0:
     resolution: {integrity: sha512-dkUXecEtChaQMdTHN4WR13c8GwKqjbSOZPJS9qDqV6Ebnb77Wa/nQzWFckhP0dCps3a9lUQBd8hYGOMbOosiQQ==}
@@ -1701,10 +1687,6 @@ snapshots:
     dependencies:
       hexo-pagination: 3.0.0
 
-  hexo-generator-category@2.0.0:
-    dependencies:
-      hexo-pagination: 3.0.0
-
   hexo-generator-index@4.0.0:
     dependencies:
       hexo-pagination: 3.0.0
@@ -1716,10 +1698,6 @@ snapshots:
       nunjucks: 3.2.4(chokidar@3.6.0)
     transitivePeerDependencies:
       - chokidar
-
-  hexo-generator-tag@2.0.0:
-    dependencies:
-      hexo-pagination: 3.0.0
 
   hexo-i18n@2.0.0:
     dependencies:

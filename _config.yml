@@ -78,6 +78,10 @@ theme: cactus
 theme_config:
   colorscheme: white
 
+sitemap:
+  tags: false
+  categories: false
+
 # hexo-neat
 neat_enable: true # 启用neat
 
