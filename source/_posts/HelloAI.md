@@ -5,41 +5,41 @@ tags: untagged
 categories: Uncategorized
 ---
 
-写在开头：这不是一篇贬低 AI 的文章，这是一篇描述我所见到的 AI 现状的文章。
+To start with: this is not an article that belittles AI. It is an article about the state of AI as I see it.
 
-ChatGPT 的出现诞生了各种 AI 工具，导致我最近几乎患上了 AI 偏头痛。
+The arrival of ChatGPT has given birth to all kinds of AI tools, to the point where I have almost developed an AI migraine lately.
 
-每天你都会看到新的 AI 工具，揭掉它的面纱你会发现后面是 ChatGPT；有些产品会告诉你它接入了 ChatGPT 使你主观认为它是 AI 工具。
+Every day you see a new AI tool. Pull back the curtain and you often find ChatGPT behind it. Some products simply tell you they have integrated ChatGPT, which makes you subjectively think of them as AI tools.
 
-似乎只有 ChatGPT 才能实现这些需求，但是让我们仔细想一想...
+It can feel as if only ChatGPT can satisfy these needs, but let's think about it more carefully...
 
-## AI 文档
+## AI Documentation
 
-以 AI 文档为例，实现步骤大概是这样的：
+Take AI documentation as an example. The implementation usually looks something like this:
 
-- 将现有文档预处理
-- 向量化并存储到向量数据库
-- 当用户提问时，将用户的问题向量化
-- 在向量数据库中检索与问题向量最接近的
-- 得到 chunk 后一起扔给 ChatGPT
-- 得到 ChatGPT 总结的答案返回给用户
+- Preprocess the existing documentation
+- Vectorize it and store it in a vector database
+- When the user asks a question, vectorize the question
+- Search the vector database for the closest matches to that question vector
+- Send the retrieved chunks to ChatGPT
+- Return ChatGPT's summarized answer to the user
 
-这里其实用到了 ChatGPT 的总结的能力，想一下如果我们跳过最后的步骤，实现一个这样的工具是否有意义？
+What we are really using here is ChatGPT's ability to summarize. But think about it: if we skipped the final step and built a tool like this, would it still be useful?
 
-我认为是有的，而且很多场景可能足矣。人类很难完全信任 AI 给出的结果，现阶段的 ChatGPT 的总结能力也难以让人满意。
+I think it would. In many scenarios, it might even be enough. It is hard for people to fully trust AI-generated results, and at this stage ChatGPT's summarization ability is still not always satisfying.
 
-所以这样的功能对我而言似乎是聊胜于无。
+So for me, this kind of feature feels better than nothing, but not by much.
 
-## AI 编程
+## AI Programming
 
-这是另我非常激动的功能，在 ChatGPT 出现前，我还在写一个生成单元测试模板的工具，已经实现了自动对函数声明 mock 等功能，但当我见到 ChatGPT 后，我马上放弃了，这样的工具在 ChatGPT 面前没有任何意义了。
+This is the feature that excites me the most. Before ChatGPT appeared, I was writing a tool for generating unit test templates. It could already mock function declarations automatically and do a few other things. But once I saw ChatGPT, I gave up on it immediately. A tool like that no longer made sense in front of ChatGPT.
 
-现阶段的 AI 编程一定会让程序员更高效，而且完全没有替代程序员的可能性，趁现在尽情享受，再过几年简单的工作可能就真的不需要程序员了。
+At this stage, AI programming will definitely make programmers more efficient, and there is no real possibility that it will replace programmers completely. Enjoy it while you can. In a few years, simple programming work may genuinely no longer need programmers.
 
-## AI 写作
+## AI Writing
 
-很明显这是刚需，大部分人可能并不擅长写作、翻译之类的文字类工作，有了 AI 之后每个人都可以达到高水准。
+This is clearly a real need. Most people are probably not especially good at writing, translation, or similar language work. With AI, everyone can reach a much higher standard.
 
-## AI 教师
+## AI Teacher
 
-这是一个很有意思的功能，我会用他来学外语，求助一些便于分辨对错的东西（当你学一个不了解的领域时，现阶段最好先不用 AI，因为你不知道它是不是在乱说）。
+This is a very interesting use case. I use it to learn foreign languages and to ask about things where it is relatively easy to tell right from wrong. When you are learning a field you do not understand yet, it is probably better not to rely on AI for now, because you may not know whether it is making things up.
